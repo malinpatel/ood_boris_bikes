@@ -6,6 +6,7 @@ describe DockingStation do
   subject {docking_station = DockingStation.new}
     it {is_expected.to respond_to(:release_bike) }
     it { bike = Bike.new; expect(subject.return_bike(bike)).to eq bike}
+    it {bike = Bike.new; subject.return_bike(bike); expect(subject.bike).to eq bike}
 
   end
 
