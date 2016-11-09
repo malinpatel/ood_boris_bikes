@@ -54,4 +54,20 @@ describe DockingStation do
 
   end
 
+  describe "Docking Station with more than 20 racks" do
+    number_of_racks = 30
+    subject {dock = DockingStation.new(number_of_racks)}
+
+    it "should have more than 20 racks" do
+      expect(subject).to respond_to(:capacity)
+      expect(subject.capacity).to eq number_of_racks
+    end
+
+    it "should accept 30 bikes when the dock is empty" do
+      subject.instance_variable_set(:@bikes, [])
+      30.times do subject.return_bike(Bike.new) end
+    end
+  end
+
+
 end
