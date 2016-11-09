@@ -9,13 +9,14 @@ class DockingStation
   end
 
   def release_bike
-    fail "EmptyRackError" if @bike.nil?
+    fail "Rack is empty" if @bike.nil?
     bike = @bike
     @bike = nil
     return bike
   end
 
   def return_bike(bike)
+    fail "Rack is full" unless @bike.nil?
     @bike = bike
   end
 
