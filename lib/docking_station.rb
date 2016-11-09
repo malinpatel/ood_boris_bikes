@@ -13,7 +13,7 @@ class DockingStation
 
   def release_bike
     fail "Rack is empty" if empty?
-    return @bikes.pop
+    @bikes.pop if @bikes[-1].working?   
   end
 
   def return_bike(bike)

@@ -54,7 +54,7 @@ describe DockingStation do
 
   end
 
-  describe "Docking Station with more than 20 racks" do
+  describe "with more than 20 racks" do
     number_of_racks = 30
     subject {dock = DockingStation.new(number_of_racks)}
 
@@ -69,5 +69,14 @@ describe DockingStation do
     end
   end
 
+  describe "does not release broken bikes" do
+    subject {docking_station = DockingStation.new}
+
+    it "should not release broken bikes" do
+      subject.bikes.each{|bike| bike.break!}
+      expect(subject.release_bike).to eq nil
+    end
+
+  end
 
 end
