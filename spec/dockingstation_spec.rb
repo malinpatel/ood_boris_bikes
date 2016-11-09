@@ -24,29 +24,21 @@ describe DockingStation do
     end
 
     it "should respond to bike with nil" do
+      subject.release_bike
       expect(subject.bike).to eq nil
     end
 
-describe "Check if a bike is released" do
+  describe "Check if a bike is released" do
     my_bike = Bike.new
     it "should store the correct bike in the rack when returned" do
       subject.return_bike(my_bike)
       expect(subject.bike).to eq my_bike
     end
 
-
-
-
-      # it { bike = Bike.new; expect(subject.return_bike(bike)).to eq bike}
-    # it {bike = Bike.new; subject.return_bike(bike); expect(subject.bike).to eq bike}
-
   end
 
-
-
-  # describe "Return a bike to the docking station" do
-  #   subject {docking_station = DockingStation.new}
-  #   it {is_expected.to respond_to (:return_bike) }
-  # end
-
+  it "should raise an error if the dock is empty" do
+    expect(subject.release_bike.instance_of?(Bike)).to eq true
+    expect{subject.release_bike}.to raise_error("EmptyRackError")
+  end
 end
