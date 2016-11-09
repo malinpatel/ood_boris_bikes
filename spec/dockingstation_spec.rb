@@ -24,27 +24,32 @@ describe DockingStation do
       expect(subject).to respond_to(:return_bike).with(1).argument
     end
 
-    it "should respond to bike with nil" do
-      subject.release_bike
-      expect(subject.bike).to eq nil
+    it "should return an array of Bikes when bikes is called" do
+      # subject.release_bike
+      expect(subject).to respond_to(:bikes)
+      expect(subject.bikes.instance_of?(Array)).to eq true
     end
 
     it "should store the correct bike in the rack when returned" do
       subject.release_bike
       subject.return_bike(my_bike)
-      expect(subject.bike).to eq my_bike
+      expect(subject.bikes[-1]).to eq my_bike
     end
 
-  describe "Check if dock is full" do
+  describe "Limit catching" do
     my_bike = Bike.new
 
     it "should raise an error if the dock is empty" do
-      expect(subject.release_bike.instance_of?(Bike)).to eq true
-      expect{subject.release_bike}.to raise_error("Rack is empty")
+      expect{
+        21.times{ subject.release_bike }
+      }.to raise_error("Rack is empty")
     end
 
     it "should raise an error when returning a bike to a full dock" do
-      expect{subject.return_bike(my_bike)}.to raise_error("Rack is full")
+      expect{
+        subject.return_bike(my_bike)
+      }.to raise_error("Rack is full")
+
     end
 
   end
