@@ -41,7 +41,7 @@ describe DockingStation do
 
     it "should raise an error if the dock is empty" do
       expect{
-        21.times{ subject.release_bike }
+        (DockingStation::DEFAULT_CAPACITY + 1).times{ subject.release_bike }
       }.to raise_error("Rack is empty")
     end
 
