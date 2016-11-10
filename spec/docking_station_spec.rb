@@ -7,12 +7,14 @@ describe DockingStation do
       bike = subject.dock_bike(Bike.new)
       expect(bike.pop).to be_working
     end
+
     it 'checks that it docks a bike' do
       bike = Bike.new
       expect(subject.dock_bike(bike)).to include bike
     end
+
     it 'stops bikes being docked if the dock is full' do
-      subject.dock_bike(Bike.new)
+      subject.capacity.times {subject.dock_bike Bike.new}
       expect{subject.dock_bike(Bike.new)}.to raise_error("The dock is full.")
     end
   end
