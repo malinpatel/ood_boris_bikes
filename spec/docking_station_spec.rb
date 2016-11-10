@@ -2,6 +2,10 @@ require 'docking_station'
 
 describe DockingStation do
 
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq 20
+  end
+
   describe '#dock_bike' do
     it "creates an instance of class Bike, and checks it is working" do
       bike = subject.dock_bike(Bike.new)
@@ -14,8 +18,7 @@ describe DockingStation do
     end
 
     it 'stops bikes being docked if the dock is full' do
-      capacity = DockingStation::DEFAULT_CAPACITY
-      capacity.times {subject.dock_bike Bike.new}
+      subject.capacity.times {subject.dock_bike Bike.new}
       expect{subject.dock_bike(Bike.new)}.to raise_error("The dock is full.")
     end
   end
