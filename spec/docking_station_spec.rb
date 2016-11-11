@@ -7,9 +7,12 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
+    let(:bike) { double :bike }
     it "creates an instance of class Bike, and checks it is working" do
-      bike = subject.dock_bike double :bike
-      expect(bike.pop).to be_working
+      allow(bike).to receive(:working?).and_return(true)
+      subject.dock_bike(bike)
+      released_bike = subject.release_bike
+      expect(released_bike).to be_working
     end
 
     it 'checks that it docks a bike' do
