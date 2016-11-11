@@ -1,5 +1,5 @@
 require 'docking_station'
-
+require 'van'
 describe DockingStation do
 
   it 'has a default capacity' do
@@ -7,12 +7,12 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
-    let(:bike) { double :bike }
+    let(:bike) {double :bike}
     it "creates an instance of class Bike, and checks it is working" do
-      allow(bike).to receive(:working?).and_return(true)
+      allow(bike).to receive(:working).and_return(true)
       subject.dock_bike(bike)
       released_bike = subject.release_bike
-      expect(released_bike).to be_working
+      expect(released_bike.working).to eq true
     end
 
     it 'checks that it docks a bike' do
