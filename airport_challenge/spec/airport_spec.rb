@@ -17,10 +17,10 @@ describe Airport do
     #   expect(airport.airport).to eq([plane])
     # end
 
-    # it 'should prevent landing when the airport is full' do
-    #   subject.capacity.times {airport.land(plane)}
-    #   expect{airport.land(plane)}.to raise_error("The airport is full, cannot land here!")
-    # end
+    it 'should prevent planes from landing when the airport is full' do
+      airport.capacity.times {airport.land(plane)}
+      expect{airport.land(plane)}.to raise_error("The airport is full, cannot land here!")
+    end
 
   end
 
