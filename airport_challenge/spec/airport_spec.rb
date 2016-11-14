@@ -3,7 +3,7 @@ require './lib/airport.rb'
 
 describe Airport do
 
-  subject(:airport) {described_class.new(60,weather)}
+  subject(:airport) {described_class.new(weather)}
   let(:plane) {double :plane}
   let(:weather) {double :weather}
 
@@ -50,7 +50,7 @@ describe Airport do
           end
 
           it 'takes off planes only from the airport they are at' do
-            airport_2 = Airport.new(20,Weather.new)
+            airport_2 = Airport.new(Weather.new)
             airport_2.land(plane)
             expect {airport.take_off(plane)}.to raise_error("Cannot take off plane: plane not at this airport.")
           end
@@ -60,6 +60,7 @@ describe Airport do
             flying_plane = airport.take_off(plane)
             expect {flying_plane.take_off(plane)}.to raise_error("Plane cannot take off: already flying.")
           end
+
       end
 
         context 'when weather is stormy' do

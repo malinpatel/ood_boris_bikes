@@ -22,7 +22,7 @@ DEFAULT_CAPACITY = 50
   def take_off(plane)
     fail "Cannot take off: weather is stormy." if stormy?
     fail "Cannot take off plane: plane not at this airport." unless at_airport?(plane)
-    plane
+    plane 
   end
 
 private
