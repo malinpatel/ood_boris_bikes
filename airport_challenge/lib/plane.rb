@@ -1,11 +1,8 @@
 require './lib/airport.rb'
 
-# attr_accessor :flying
 
 class Plane
-
-  # def initialize(flying = false)
-  #   @flying = flying
-  # end
-
+  def take_off
+    'Plane cannot take off: already flying.'
+  end
 end
