@@ -6,11 +6,14 @@ describe Plane do
   let (:airport) {double :airport}
 
     describe '#take off' do
-      it {is_expected.to respond_to :take_off}
+      it 'raises an error if trying to take off while already flying' do
+        expect{plane.take_off}.to raise_error 'Plane cannot take off: already flying.'
+      end
     end
-
-    it 'raises and error if already flying' do
-      expect {plane.take_off}.to raise_error 'Plane cannot take off: already flying.'
+    describe '#airport' do
+      it 'raises an error if trying to ' do
+        expect{plane.airport}.to raise_error 'Plane cannot be at airport: already flying.'
+      end
     end
 
 end
